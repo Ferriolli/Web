@@ -3,14 +3,19 @@
 }
 
 .carousel {
-    width:1400px;
-    height:900px;
+    width: 50%;
+    height: 30%;
     margin: auto;
 }
 
 .img-sm{
     width: 30vw;
     height: 30vh;
+}
+
+.img-md{
+    width: 40vw;
+    height: 40vh;
 }
 
 .fs-24{
