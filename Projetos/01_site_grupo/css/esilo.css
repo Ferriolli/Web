@@ -1,5 +1,23 @@
 .header-100{
-    height: 100vh;
+    height: 100%;
+}
+
+.carousel {
+    width:1000px;
+    height:800px;
+    margin: auto;
+}
+
+.fs-24{
+    font-size: 24px;
+}
+
+.fs-36{
+    font-size: 36px;
+}
+
+.negrito{
+    font-weight: bold;
 }
 
 .bg-cinza{
@@ -14,4 +32,13 @@
 
 .f-branca{
     color: white;
+}
+
+.p20{
+    padding-left: 20vw;
+    padding-right: 20vw;
+}
+
+.pt-10{
+    padding-top: 10vh;
 }
