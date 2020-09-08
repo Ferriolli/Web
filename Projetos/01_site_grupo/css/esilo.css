@@ -8,6 +8,11 @@
     margin: auto;
 }
 
+.img-sm{
+    width: 30vw;
+    height: 30vh;
+}
+
 .fs-24{
     font-size: 24px;
 }
