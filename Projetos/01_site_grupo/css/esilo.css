@@ -2,6 +2,10 @@
     height: 100%;
 }
 
+.m-20{
+    margin-left: 20%;
+    margin-right: 20%;
+}
 
 .img-sm{
     width: 30vw;
