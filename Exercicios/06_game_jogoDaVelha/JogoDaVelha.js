@@ -5,6 +5,19 @@ var divJogadores = document.getElementById('opcoesJogo');
 var vezDoJogador1 = true;
 var podeJogar = false;
 var valorCampoJogo;
+var botaoClicado;
+
+var casa1 = document.getElementById('11');
+var casa2 = document.getElementById('12');
+var casa3 = document.getElementById('13');
+var casa4 = document.getElementById('21');
+var casa5 = document.getElementById('22');
+var casa6 = document.getElementById('23');
+var casa7 = document.getElementById('31');
+var casa8 = document.getElementById('32');
+var casa9 = document.getElementById('33');
+    
+
 function setarOpcao(valor){
     opcaoSelecionada1 = valor;
 }
@@ -23,7 +36,7 @@ function verificarNomes(){
         document.getElementById('opcoesJogoFinal').textContent = textoOpcoes;
         podeJogar = true;
         if (opcaoSelecionada1 == 'X'){
-            opcaoSelecionada2 == 'O';
+            opcaoSelecionada2 = 'O';
         }else{
             opcaoSelecionada2 = 'X';
         }
@@ -40,14 +53,58 @@ function resetar(){
     nomeJogador2 = '';
     opcaoSelecionada = undefined;
     document.getElementById('opcoesJogo').textContent = '';
+    casa1.textContent = '';
+    casa2.textContent = '';
+    casa3.textContent = '';
+    casa4.textContent = '';
+    casa5.textContent = '';
+    casa6.textContent = '';
+    casa7.textContent = '';
+    casa8.textContent = '';
+    casa9.textContent = '';
+    textoOpcoes = '';
+    document.getElementById('opcoesJogoFinal').textContent = '';
 }
 
 function jogar(idBotaoClicado){
     if (podeJogar){
         if (vezDoJogador1){
-            var botaoClicado = document.getElementById(idBotaoClicado);
-            botaoClicado.textContent = opcaoSelecionada1;
+            botaoClicado = document.getElementById(idBotaoClicado);
+            botaoClicado.appendChild(document.createTextNode(opcaoSelecionada1));
             botaoClicado.removeAttribute('onclick');
+            vezDoJogador1 = false;
+        }else{
+            botaoClicado = document.getElementById(idBotaoClicado);
+            botaoClicado.appendChild(document.createTextNode(opcaoSelecionada2));
+            botaoClicado.removeAttribute('onclick');
+            vezDoJogador1 = true;
         }
+    }
+}
+
+function checarVitoria(){
+    if (casa1.textContent == casa2.textContent && casa2.textContent == casa3.textContent && casa1.textContent != ''){
+        console.log('Acabou');
+    }
+    if (casa4.textContent == casa5.textContent && casa5.textContent == casa6.textContent && casa4.textContent != ''){
+        console.log('Acabou');
+    }
+    if (casa7.textContent == casa8.textContent && casa8.textContent == casa9.textContent && casa7.textContent != ''){
+        console.log('Acabou');
+    }
+    if (casa1.textContent == casa4.textContent && casa4.textContent == casa7.textContent && casa1.textContent != ''){
+        console.log('Acabou');
+    }
+    if (casa2.textContent == casa5.textContent && casa5.textContent == casa8.textContent && casa2.textContent != ''){
+        console.log('Acabou');
+    }
+    if (casa3.textContent == casa6.textContent && casa6.textContent == casa9.textContent && casa3.textContent != ''){
+        console.log('Acabou');
+    }
+    if (casa1.textContent == casa5.textContent && casa5.textContent == casa9.textContent && casa1.textContent != ''){
+        console.log('Acabou');
+    }
+    if (casa3.textContent == casa5.textContent && casa5.textContent == casa7.textContent && casa3.textContent != ''){
+        console.log('Acabou');
     }
 }
