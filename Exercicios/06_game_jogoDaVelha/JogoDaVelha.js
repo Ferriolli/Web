@@ -7,6 +7,8 @@ var podeJogar = false;
 var valorCampoJogo;
 var botaoClicado;
 
+var textoFinal = document.getElementById('opcoesJogoFinal');
+
 var casa1 = document.getElementById('11');
 var casa2 = document.getElementById('12');
 var casa3 = document.getElementById('13');
@@ -16,7 +18,6 @@ var casa6 = document.getElementById('23');
 var casa7 = document.getElementById('31');
 var casa8 = document.getElementById('32');
 var casa9 = document.getElementById('33');
-    
 
 function setarOpcao(valor){
     opcaoSelecionada1 = valor;
@@ -51,7 +52,7 @@ function resetar(){
     document.getElementById('conteudoInicial').style.visibility = 'visible';
     nomeJogador1 = '';
     nomeJogador2 = '';
-    opcaoSelecionada = undefined;
+    opcaoSelecionada1 = undefined;
     document.getElementById('opcoesJogo').textContent = '';
     casa1.textContent = '';
     casa2.textContent = '';
@@ -64,18 +65,31 @@ function resetar(){
     casa9.textContent = '';
     textoOpcoes = '';
     document.getElementById('opcoesJogoFinal').textContent = '';
+    casa1.onclick = function() {jogar('11'); checarVitoria();};
+    casa2.onclick = function() {jogar('12'); checarVitoria();};
+    casa3.onclick = function() {jogar('13'); checarVitoria();};
+    casa4.onclick = function() {jogar('21'); checarVitoria();};
+    casa5.onclick = function() {jogar('22'); checarVitoria();};
+    casa6.onclick = function() {jogar('23'); checarVitoria();};
+    casa7.onclick = function() {jogar('31'); checarVitoria();};
+    casa8.onclick = function() {jogar('32'); checarVitoria();};
+    casa9.onclick = function() {jogar('33'); checarVitoria();};
+    podeJogar = false;
+    vezDoJogador1 = true;
 }
 
 function jogar(idBotaoClicado){
     if (podeJogar){
         if (vezDoJogador1){
             botaoClicado = document.getElementById(idBotaoClicado);
-            botaoClicado.appendChild(document.createTextNode(opcaoSelecionada1));
+            //botaoClicado.appendChild(document.createTextNode(opcaoSelecionada1));
+            botaoClicado.textContent = opcaoSelecionada1;
             botaoClicado.removeAttribute('onclick');
             vezDoJogador1 = false;
         }else{
             botaoClicado = document.getElementById(idBotaoClicado);
-            botaoClicado.appendChild(document.createTextNode(opcaoSelecionada2));
+            //botaoClicado.appendChild(document.createTextNode(opcaoSelecionada2));
+            botaoClicado.textContent = opcaoSelecionada2;
             botaoClicado.removeAttribute('onclick');
             vezDoJogador1 = true;
         }
@@ -84,27 +98,57 @@ function jogar(idBotaoClicado){
 
 function checarVitoria(){
     if (casa1.textContent == casa2.textContent && casa2.textContent == casa3.textContent && casa1.textContent != ''){
-        console.log('Acabou');
+        if (casa1.textContent == opcaoSelecionada1){
+            textoFinal.textContent = 'Jogador 1 venceu';
+        }else{
+            textoFinal.textContent = 'Jogador 2 venceu';
+        }
     }
     if (casa4.textContent == casa5.textContent && casa5.textContent == casa6.textContent && casa4.textContent != ''){
-        console.log('Acabou');
+        if (casa4.textContent == opcaoSelecionada1){
+            textoFinal.textContent = 'Jogador 1 venceu';
+        }
     }
     if (casa7.textContent == casa8.textContent && casa8.textContent == casa9.textContent && casa7.textContent != ''){
-        console.log('Acabou');
+        if (casa7.textContent == opcaoSelecionada1){
+            textoFinal.textContent = 'Jogador 1 venceu';
+        }else{
+            textoFinal.textContent = 'Jogador 2 venceu';
+        }
     }
     if (casa1.textContent == casa4.textContent && casa4.textContent == casa7.textContent && casa1.textContent != ''){
-        console.log('Acabou');
+        if (casa1.textContent == opcaoSelecionada1){
+            textoFinal.textContent = 'Jogador 1 venceu';
+        }else{
+            textoFinal.textContent = 'Jogador 2 venceu';
+        }
     }
     if (casa2.textContent == casa5.textContent && casa5.textContent == casa8.textContent && casa2.textContent != ''){
-        console.log('Acabou');
+        if (casa2.textContent == opcaoSelecionada1){
+            textoFinal.textContent = 'Jogador 1 venceu';
+        }else{
+            textoFinal.textContent = 'Jogador 2 venceu';
+        }
     }
     if (casa3.textContent == casa6.textContent && casa6.textContent == casa9.textContent && casa3.textContent != ''){
-        console.log('Acabou');
+        if (casa3.textContent == opcaoSelecionada1){
+            textoFinal.textContent = 'Jogador 1 venceu';
+        }else{
+            textoFinal.textContent = 'Jogador 2 venceu';
+        }
     }
     if (casa1.textContent == casa5.textContent && casa5.textContent == casa9.textContent && casa1.textContent != ''){
-        console.log('Acabou');
+        if (casa1.textContent == opcaoSelecionada1){
+            textoFinal.textContent = 'Jogador 1 venceu';
+        }else{
+            textoFinal.textContent = 'Jogador 2 venceu';
+        }
     }
     if (casa3.textContent == casa5.textContent && casa5.textContent == casa7.textContent && casa3.textContent != ''){
-        console.log('Acabou');
+        if (casa2.textContent == opcaoSelecionada1){
+            textoFinal.textContent = 'Jogador 1 venceu';
+        }else{
+            textoFinal.textContent = 'Jogador 2 venceu';
+        }
     }
 }
