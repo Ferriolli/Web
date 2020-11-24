@@ -72,27 +72,32 @@ class LaserGroup extends Phaser.Physics.Arcade.Group{
     }
 }
 
+function spawnEnemy(){
+    this.EnemyGroup.spawnEnemy(Phaser.Math.Between(0, 400), -10);
+}
+
 class SceneMain extends Phaser.Scene {
     constructor() {
-        super();
-        
+        super('main');
         this.spaceship;
         this.LaserGroup;
         this.EnemyGroup;
         this.inputKeys;
     }
+
     preload() {
         // carregando assets
         this.load.image('spaceship', 'images/spaceship.png');
         this.load.image('laser', 'images/bullet.png');
         this.load.image('enemy', 'images/enemy.png');
+        console.log(game);
     }
     create() {
+        var timedEvent;
         // adicionando assets na cena
         //this.player = this.physics.add.sprite(100, 100, 'spaceship');
-
-        //game.time.events.loop(Phaser.Timer.SECOND, spawnEnemy, this);
-
+        //game.physics.enable(this.spaceship, Phaser.Physics.ARCADE);
+        timedEvent = this.time.addEvent({ delay: 1000, callback: spawnEnemy, callbackScope: this, loop: true });
         this.LaserGroup = new LaserGroup(this);
         this.EnemyGroup = new EnemyGroup(this);
 
@@ -106,6 +111,7 @@ class SceneMain extends Phaser.Scene {
 
         this.spaceBar = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
 
+
         this.addShip();
         this.addEvents();
     }
@@ -113,7 +119,9 @@ class SceneMain extends Phaser.Scene {
     addShip(){
         const centerX = this.cameras.main.width / 2;
         const bottom = this.cameras.main.height;
-        this.spaceship = this.add.image(centerX, bottom - 90, 'spaceship');
+        //this.spaceship = this.physics.add.sprite(centerX, bottom - 90, 'spaceship');
+        //this.physics.enable(this.spaceship, Phaser.Physics.ARCADE)
+        this.spaceship = this.physics.add.image(centerX, bottom - 90, 'spaceship');
     }
 
     addEvents(){
@@ -131,22 +139,11 @@ class SceneMain extends Phaser.Scene {
     }
 
     hit() {
-        /*// incrementa o score
-        this.score += 10;
-        this.scoreText.setText('score: ' + this.score);
-
-        // "Animação" que aumenta em 20% o tamanho do player 
-        // quando ele atinge a moeda
-        this.tweens.add({
-            targets: this.player, 
-            duration: 200, 
-            scaleX: 1.2, 
-            scaleY: 1.2, 
-            yoyo: true, // no final, retorna o player ao original
-        });*/
+        console.log('teste')
     }
 
     update() {
+
         this.inputKeys.forEach(key => {
 			if(Phaser.Input.Keyboard.JustDown(key)) {
 				this.fireBullet();
@@ -156,22 +153,21 @@ class SceneMain extends Phaser.Scene {
         // movimentações do player via setas teclado
         if (this.arrow.right.isDown) {
             // move para a direita
-            this.spaceship.x += 3;
-            this.spawnEnemy();
+            this.spaceship.x += 5;
         } else if (this.arrow.left.isDown) {
             // move para a esquerda
-            this.spaceship.x -= 3;
+            this.spaceship.x -= 5;
         }
         if (this.arrow.down.isDown) {
             // move para baixo
-            this.spaceship.y += 3;
+            this.spaceship.y += 5;
         } else if (this.arrow.up.isDown) {
             // move para cima
-            this.spaceship.y -= 3;
+            this.spaceship.y -= 5;
         }
         // quando o player colide com a moeda, contabiliza o contato
-        /*if (this.physics.overlap(this.player, this.coin)) {
+        if (this.physics.overlap(this.spaceship, this.enemy)) {
             this.hit();
-        }*/
+        }
     }
 }
