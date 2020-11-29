@@ -1,1 +1,1 @@
-<?php include_once("Projetos/01_site_grupo/index.html"); ?>
+<?php include_once("Projetos/01_site_grupo/Index.html"); ?>
