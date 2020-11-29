@@ -124,7 +124,7 @@ class SceneMain extends Phaser.Scene {
     addShip(){
         const centerX = this.cameras.main.width / 2;
         const bottom = this.cameras.main.height;
-        this.spaceship = this.physics.add.image(centerX, bottom - 56, 'spaceship');
+        this.spaceship = this.physics.add.image(centerX, bottom - 70, 'spaceship');
         this.bigship = this.physics.add.image(centerX, bottom, 'bigship');
     }
 
@@ -183,13 +183,13 @@ class SceneMain extends Phaser.Scene {
             enemy.setVisible(false);
             enemy.setActive(false);
             //move a nave para baixo e para sua movimentação
-            this.spaceship.setPosition(this.spaceship.x, this.spaceship.y + 10);
+            this.spaceship.setPosition(this.spaceship.x, this.spaceship.y + 7);
             this.spaceship.setVelocityY(0);
         }, null, this)
 
         //Checa colisao do player com a nave gigante
         if (this.physics.overlap(this.spaceship, this.bigship)) {
-            console.log('perdeu');
+            this.scene.restart()
         }
     }
 }
