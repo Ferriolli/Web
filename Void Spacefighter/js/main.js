@@ -2,7 +2,7 @@ window.onload = function () {
     var config = {
         type: Phaser.AUTO,
         width: 400,
-        height: 700,
+        height: 800,
         backgroundColor: '#000000',
         parent: 'phaser-game',
         physics: {

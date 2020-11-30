@@ -124,8 +124,8 @@ class SceneMain extends Phaser.Scene {
     addShip(){
         const centerX = this.cameras.main.width / 2;
         const bottom = this.cameras.main.height;
-        this.spaceship = this.physics.add.image(centerX, bottom - 70, 'spaceship');
-        this.bigship = this.physics.add.image(centerX, bottom, 'bigship');
+        this.spaceship = this.physics.add.image(centerX, bottom - 360, 'spaceship');
+        this.bigship = this.physics.add.image(centerX, bottom - 150, 'bigship');
     }
 
     //Adiciona controles ao jogo
