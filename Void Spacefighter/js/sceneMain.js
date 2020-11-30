@@ -74,7 +74,7 @@ class LaserGroup extends Phaser.Physics.Arcade.Group{
 
 //Funcao que spawna o inimigo
 function spawnEnemy(){
-    this.EnemyGroup.create(Phaser.Math.Between(15, 385), -10, 'enemy');
+    this.EnemyGroup.create(Phaser.Math.Between(30, 370), -10, 'enemy');
     this.EnemyGroup.setVelocityY(300);
 }
 //Classe principal
@@ -95,9 +95,12 @@ class SceneMain extends Phaser.Scene {
         this.load.image('enemy', 'images/enemy.png');
         this.load.audio('laserSound', ['audio/laser.mp3','audio/laser.ogg']);
         this.load.image('bigship', 'images/bigship.png')
+        this.load.image('background', 'images/fundo.jpg')
     }
     create() {
         //Evento de tempo que spawna os inimigos conforme o delay
+        let bg = this.add.image(0, 0, 'background')
+        bg.setScale(2);
         this.time.addEvent({ delay: 500, callback: spawnEnemy, callbackScope: this, loop: true });
 
         //Instancias dos grupos
@@ -157,10 +160,10 @@ class SceneMain extends Phaser.Scene {
         }); 
 
         //Definição de controles e movimentação do player
-        if (this.arrow.right.isDown && this.spaceship.x < 385) {
+        if (this.arrow.right.isDown && this.spaceship.x < 360) {
             this.spaceship.x += 5;
 
-        } else if (this.arrow.left.isDown && this.spaceship.x > 15) {
+        } else if (this.arrow.left.isDown && this.spaceship.x > 40) {
             this.spaceship.x -= 5;
         }
 
